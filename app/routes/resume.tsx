@@ -63,8 +63,9 @@ const Resume: () => JSX.Element = () => {
                 <section className="feedback-section bg-[url('/images/bg-small.svg')] bg-cover h-[100vh] sticky top-0 items-center justify-center">
                     {imageUrl && resumeUrl && (
                         <div className="animate-in fade-in duration-1000 gradient-border max-sm:m-0 h-[90%] max-w-xl:h-fit w-fit">
-                            <a href={resumeUrl  } target="_blank" rel="noreferrer noopener" className="w-full h-full">
-                                <img src={imageUrl} alt="resume-image" className="w-full h-full object-contain rounded-2xl" />
+                            <a href={resumeUrl.toString()} target="_blank" rel="noreferrer noopener"
+                               className="w-full h-full">
+                                <img src={`${imageUrl}`} alt="resume-image" className="w-full h-full object-contain rounded-2xl" />
                             </a>
                         </div>
                     )}
