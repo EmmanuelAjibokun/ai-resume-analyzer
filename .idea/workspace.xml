@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cecd570-146b-47b5-903d-1d70deec5284" name="Changes" comment="Update: improve upload form validation and error handling&#10;&#10;- Added client-side validations for all input fields.&#10;- Enhanced error messaging with user-friendly feedback.&#10;- Integrated dynamic form field styling based on validation state.">
-      <change afterPath="$PROJECT_DIR$/app/components/ATS.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/Details.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/Summary.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/routes/resume.tsx" afterDir="false" />
+    <list default="true" id="8cecd570-146b-47b5-903d-1d70deec5284" name="Changes" comment="Add: resume analysis route and components&#10;&#10;- Created a new `/resume/:id` route for resume analysis.&#10;- Add `Resume`, `Summary`, `Details`, and `ATS` components.&#10;- Implemented resume loading logic with authentication check and database integration.&#10;- Enabled redirection after file upload to the resume analysis page.">
+      <change afterPath="$PROJECT_DIR$/app/components/ScoreBadge.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/components/ScoreGauge.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/routes/upload.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/upload.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Summary.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Summary.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +86,7 @@
       <workItem from="1753138208048" duration="11649000" />
       <workItem from="1753172539411" duration="28054000" />
       <workItem from="1753293894789" duration="3966000" />
-      <workItem from="1753325664273" duration="10686000" />
+      <workItem from="1753325664273" duration="14179000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize project with React Router, Docker setup, TailwindCSS, and TypeScript configuration.">
       <option name="closed" value="true" />
@@ -147,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753330188392</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add: resume analysis route and components&#10;&#10;- Created a new `/resume/:id` route for resume analysis.&#10;- Add `Resume`, `Summary`, `Details`, and `ATS` components.&#10;- Implemented resume loading logic with authentication check and database integration.&#10;- Enabled redirection after file upload to the resume analysis page.">
+      <option name="closed" value="true" />
+      <created>1753342370011</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1753342370011</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +177,8 @@
     <MESSAGE value="Add: initiate upload page&#10;- set job form&#10;- set upload input" />
     <MESSAGE value="Update: finalize upload and resume analysis flow&#10;&#10;- Added `prepareInstructions` utility for AI feedback input.&#10;- Enhanced error checks in the upload process.&#10;- Integrated AI feedback analysis after file upload.&#10;- Updated `puter` model configuration." />
     <MESSAGE value="Update: improve upload form validation and error handling&#10;&#10;- Added client-side validations for all input fields.&#10;- Enhanced error messaging with user-friendly feedback.&#10;- Integrated dynamic form field styling based on validation state." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update: improve upload form validation and error handling&#10;&#10;- Added client-side validations for all input fields.&#10;- Enhanced error messaging with user-friendly feedback.&#10;- Integrated dynamic form field styling based on validation state." />
+    <MESSAGE value="Add: resume analysis route and components&#10;&#10;- Created a new `/resume/:id` route for resume analysis.&#10;- Add `Resume`, `Summary`, `Details`, and `ATS` components.&#10;- Implemented resume loading logic with authentication check and database integration.&#10;- Enabled redirection after file upload to the resume analysis page." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add: resume analysis route and components&#10;&#10;- Created a new `/resume/:id` route for resume analysis.&#10;- Add `Resume`, `Summary`, `Details`, and `ATS` components.&#10;- Implemented resume loading logic with authentication check and database integration.&#10;- Enabled redirection after file upload to the resume analysis page." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
