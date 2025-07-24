@@ -11,6 +11,12 @@ const Upload: () => JSX.Element = () => {
     const [isProcessing, setIsProcessing] = useState(false);
     const [statusText, setStatusText] = useState("");
     const [file, setFile] = useState<File | null>(null);
+    const [errors, setErrors] = useState<{
+        companyName?: string;
+        jobTitle?: string;
+        jobDescription?: string;
+        file?: string;
+    }>({});
 
     const {fs, auth, ai, kv, isLoading} = usePuterStore();
     const navigate = useNavigate();
@@ -78,15 +84,52 @@ const Upload: () => JSX.Element = () => {
         if (!form) return;
         const formData = new FormData(form);
 
-        const companyName = formData.get('company-name');
-        const jobTitle = formData.get('job-title');
-        const jobDescription = formData.get('job-description');
+        const companyName = formData.get('company-name') as string;
+        const jobTitle = formData.get('job-title') as string;
+        const jobDescription = formData.get('job-description') as string;
 
-        if(!file) return;
+        // Reset previous errors
+        setErrors({});
+        
+        // Validate all required fields
+        const newErrors: {
+            companyName?: string;
+            jobTitle?: string;
+            jobDescription?: string;
+            file?: string;
+        } = {};
+        
+        if (!companyName || companyName.trim() === '') {
+            newErrors.companyName = 'Company name is required';
+        }
+        
+        if (!jobTitle || jobTitle.trim() === '') {
+            newErrors.jobTitle = 'Job title is required';
+        }
+        
+        if (!jobDescription || jobDescription.trim() === '') {
+            newErrors.jobDescription = 'Job description is required';
+        }
+        
+        if (!file) {
+            newErrors.file = 'Resume file is required';
+        }
+        
+        // If there are any errors, update the state and stop submission
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
 
-        // try catch response for handleAnalyze function
-        // Implement form validation before attempting submit
-        handleAnalyze({companyName, jobTitle, jobDescription, file});
+        if (!file) return setStatusText('Please upload a resume file.');
+
+        // All validations passed, proceed with form submission
+        try {
+            handleAnalyze({companyName, jobTitle, jobDescription, file});
+        } catch (error) {
+            console.error('Error analyzing resume:', error);
+            setStatusText('An error occurred while analyzing your resume. Please try again.');
+        }
     }
     return (
         <main className="bg-[url('/images/bg-main.svg')] bg-cover">
@@ -107,19 +150,49 @@ const Upload: () => JSX.Element = () => {
                         <form id="upload-form" onSubmit={handleSubmit} className="flex flex-col gap-4 mt-8">
                             <div className="form-div">
                                 <label htmlFor="company-name">Company Name</label>
-                                <input type="text" id="company-name" name="company-name" placeholder="Company Name" />
+                                <input 
+                                    type="text" 
+                                    id="company-name" 
+                                    name="company-name" 
+                                    placeholder="Company Name"
+                                    className={errors.companyName ? "border-red-500" : ""} 
+                                />
+                                {errors.companyName && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.companyName}</p>
+                                )}
                             </div>
                             <div className="form-div">
                                 <label htmlFor="job-title">Job Title</label>
-                                <input type="text" id="job-title" name="job-title" placeholder="Job Title" />
+                                <input 
+                                    type="text" 
+                                    id="job-title" 
+                                    name="job-title" 
+                                    placeholder="Job Title"
+                                    className={errors.jobTitle ? "border-red-500" : ""} 
+                                />
+                                {errors.jobTitle && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.jobTitle}</p>
+                                )}
                             </div>
                             <div className="form-div">
                                 <label htmlFor="job-description">Job Description</label>
-                                <textarea rows={5} id="job-description" name="job-description" placeholder="Job Description" />
+                                <textarea 
+                                    rows={5} 
+                                    id="job-description" 
+                                    name="job-description" 
+                                    placeholder="Job Description"
+                                    className={errors.jobDescription ? "border-red-500" : ""} 
+                                />
+                                {errors.jobDescription && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.jobDescription}</p>
+                                )}
                             </div>
                             <div className="form-div">
-                                <label htmlFor="job-description">Upload Resume</label>
+                                <label htmlFor="resume-upload">Upload Resume</label>
                                 <FileUploader onFileSelect={handleFileSelect}/>
+                                {errors.file && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.file}</p>
+                                )}
                             </div>
 
                             <button className="primary-button" type="submit">
