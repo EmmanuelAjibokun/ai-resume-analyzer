@@ -5,6 +5,7 @@ import FileUploader from "~/components/FileUploader";
 import {usePuterStore} from "~/lib/puter";
 import { convertPdfToImage } from "~/lib/pdf2img";
 import {generateUUID} from "~/lib/utils";
+import {prepareInstructions} from "../../constants";
 
 const Upload: () => JSX.Element = () => {
     const [isProcessing, setIsProcessing] = useState(false);
@@ -36,6 +37,7 @@ const Upload: () => JSX.Element = () => {
         if(!imageFile) return setStatusText('Error: Failed to convert image to PDF.');
 
         setStatusText('Uploading image...');
+        if(!imageFile.file) return setStatusText('Error: Failed to convert image to PDF.');
         const uploadImage = await fs.upload([imageFile.file]);
         if(!uploadImage) return setStatusText('Error: Failed to upload image.');
 
@@ -50,7 +52,24 @@ const Upload: () => JSX.Element = () => {
         }
 
         // key value storage
-        await kv.set(`resume: ${uuid}`, JSON.stringify(data));
+        await kv.set(`resume:${uuid}`, JSON.stringify(data));
+
+        setStatusText('Analyzing');
+
+        const feedback = await ai.feedback(
+            uploadFile.path,
+            prepareInstructions({jobTitle, jobDescription})
+        )
+
+        if(!feedback) return setStatusText('Error: Failed to analyze resume.');
+
+        const feedbackText = typeof feedback.message.content === 'string' ? feedback.message.content : feedback.message.content[0].text;
+
+        data.feedback = JSON.parse(feedbackText);
+
+        await kv.set(`resume:${uuid}`, JSON.stringify(data));
+        setStatusText('Analysis complete, redirecting...');
+        console.log(data);
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -66,6 +85,7 @@ const Upload: () => JSX.Element = () => {
         if(!file) return;
 
         // try catch response for handleAnalyze function
+        // Implement form validation before attempting submit
         handleAnalyze({companyName, jobTitle, jobDescription, file});
     }
     return (
