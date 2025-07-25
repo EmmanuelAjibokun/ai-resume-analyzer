@@ -53,7 +53,7 @@ const Upload: () => JSX.Element = () => {
             id: uuid,
             resumePath: uploadFile.path,
             imagePath: uploadImage.path,
-            jobTitle, jobDescription, file,
+            companyName, jobTitle, jobDescription, file,
             feedback: '',
         }
 

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cecd570-146b-47b5-903d-1d70deec5284" name="Changes" comment="Add: Accordion component and integrate it into Details&#10;&#10;- Developed `Accordion` component with `AccordionItem`, `AccordionHeader`, and `AccordionContent` subcomponents for expandable UI sections.&#10;- Updated `Details` component to utilize the `Accordion` for categorized feedback display.&#10;- Enhanced `resume.tsx` to fix class name handling for better code consistency.">
+    <list default="true" id="8cecd570-146b-47b5-903d-1d70deec5284" name="Changes" comment="ADD: Fetch real resumes on the homepage&#10;- Implement resumes loading logic for homepage&#10;- Enhanced error checks in resumeCard component">
+      <change afterPath="$PROJECT_DIR$/app/routes/wipe.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/ResumeCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/ResumeCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes/home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes/home.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,7 +86,8 @@
       <workItem from="1753138208048" duration="11649000" />
       <workItem from="1753172539411" duration="28054000" />
       <workItem from="1753293894789" duration="3966000" />
-      <workItem from="1753325664273" duration="22009000" />
+      <workItem from="1753325664273" duration="24197000" />
+      <workItem from="1753418445111" duration="5448000" />
     </task>
     <task id="LOCAL-00001" summary="Initialize project with React Router, Docker setup, TailwindCSS, and TypeScript configuration.">
       <option name="closed" value="true" />
@@ -175,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753352607879</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ADD: Fetch real resumes on the homepage&#10;- Implement resumes loading logic for homepage&#10;- Enhanced error checks in resumeCard component">
+      <option name="closed" value="true" />
+      <created>1753377621672</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1753377621672</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +214,8 @@
     <MESSAGE value="Add: ScoreGauge and ScoreBadge components for resume feedback&#10;&#10;- Created `ScoreGauge` component for visualizing overall scores.&#10;- Added `ScoreBadge` component to display category-specific feedback.&#10;- Updated `Summary` component to integrate scoring visualization." />
     <MESSAGE value="Add: ATS component and utility function for styling&#10;&#10;- Developed `ATS` component to evaluate resume compatibility with ATS systems.&#10;- Added `cn` utility to streamline class name merging.&#10;- Enhanced ATS styling based on score categories." />
     <MESSAGE value="Add: Accordion component and integrate it into Details&#10;&#10;- Developed `Accordion` component with `AccordionItem`, `AccordionHeader`, and `AccordionContent` subcomponents for expandable UI sections.&#10;- Updated `Details` component to utilize the `Accordion` for categorized feedback display.&#10;- Enhanced `resume.tsx` to fix class name handling for better code consistency." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add: Accordion component and integrate it into Details&#10;&#10;- Developed `Accordion` component with `AccordionItem`, `AccordionHeader`, and `AccordionContent` subcomponents for expandable UI sections.&#10;- Updated `Details` component to utilize the `Accordion` for categorized feedback display.&#10;- Enhanced `resume.tsx` to fix class name handling for better code consistency." />
+    <MESSAGE value="ADD: Fetch real resumes on the homepage&#10;- Implement resumes loading logic for homepage&#10;- Enhanced error checks in resumeCard component" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD: Fetch real resumes on the homepage&#10;- Implement resumes loading logic for homepage&#10;- Enhanced error checks in resumeCard component" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

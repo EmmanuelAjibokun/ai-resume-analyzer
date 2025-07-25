@@ -4,6 +4,7 @@ import ResumeCard from "~/components/ResumeCard";
 import {Link, useNavigate} from "react-router";
 import {useEffect, useState} from "react";
 import {usePuterStore} from "~/lib/puter";
+import resume from "~/routes/resume";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -15,8 +16,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   const { auth, kv } = usePuterStore();
   const navigate = useNavigate();
-  // set the type for resumes, according to what would be fetched
-  const [resumes, setResumes] = useState([]);
+  const [resumes, setResumes] = useState<Resume[]>([]);
   const [loadingResumes, setLoadingResumes] = useState(false);
 
 
@@ -31,14 +31,22 @@ export default function Home() {
 
       const resumes = await kv.list('resume:*') as KVItem[];
 
-      const parsedResumes = resumes?.map(resumes => (
-          JSON.parse(resumes.value) as Resume
-      ))
+      console.log("resumes: ", resumes);
+
+      const res = await Promise.all(resumes?.map(async resume =>
+          await kv.get(`${resume}`)
+      ));
+
+      const parsedResumes = res
+          ?.map(resume => resume ? JSON.parse(resume) as Resume : null)
+          .filter((resume): resume is Resume => resume !== null) ?? [];
 
       console.log(parsedResumes);
-      setResumes(parsedResumes || []);
+      setResumes(parsedResumes);
       setLoadingResumes(false);
     }
+
+    loadResumes();
   }, []);
 
   return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
